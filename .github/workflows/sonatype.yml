@@ -33,7 +33,7 @@ jobs:
           password: ${{ secrets.IQ_PASSWORD }}
           
           # Application ID in Sonatype Lifecycle
-          application-id: YOUR_IQ_APPLICATION_ID 
+          application-id: ${{ vars.IQ_APPLICATION_ID }}
           
           # The lifecycle stage to run the policy check against
           stage: 'build' 

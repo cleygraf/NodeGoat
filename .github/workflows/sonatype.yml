@@ -46,8 +46,9 @@ jobs:
           upload-sarif-file: true 
 
       # 4. Upload SARIF file for GitHub Code Scanning (Recommended)
-      - name: Upload SARIF file
-        if: always() # Run this even if the evaluation step fails the build
-        uses: github/codeql-action/upload-sarif@v3
-        with:
-          sarif_file: result.sarif
+      # (Results are already uploaded as part of the previous job)
+      #- name: Upload SARIF file
+      #  if: always() # Run this even if the evaluation step fails the build
+      #  uses: github/codeql-action/upload-sarif@v3
+      #  with:
+      #    sarif_file: result.sarif

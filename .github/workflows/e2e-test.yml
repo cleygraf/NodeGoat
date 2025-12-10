@@ -6,7 +6,7 @@ on: [push, pull_request, workflow_dispatch]
 jobs:
   e2e-test:
     name: Node.js
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     strategy:
       fail-fast: false

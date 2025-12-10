@@ -44,7 +44,7 @@ jobs:
 
       - name: Start MongoDB
         run: |
-          docker run -d -p 27017:27017 mongo:4.0
+          docker run --name e2e-test-mongodb -d -p 27017:27017 mongo:4.0
           timeout 60s bash -c 'until nc -z -w 2 localhost 27017 && echo MongoDB ready; do sleep 2; done'
 
       - name: Run E2E test suite
@@ -52,6 +52,14 @@ jobs:
         run: |
           NODE_ENV=test npm start -- --silent &
           npm run test:ci -- --config video=true
+
+      - name: Stop and remove  MongoDB container
+        if: always() # Run this step even if 'Run Tests' fails
+        run: |
+          echo "Stopping container..."
+          docker stop e2e-test-mongodb
+          echo "Removing container..."
+          docker rm e2e-test-mongodb
 
       - name: Prepare cypress artifacts
         if: failure() && (steps.test-suite.outcome == 'failure')

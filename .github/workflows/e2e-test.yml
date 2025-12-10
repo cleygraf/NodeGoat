@@ -35,8 +35,7 @@ jobs:
       - name: Configure and authenticate to Nexus repository
         run: |
           npm config set registry ${{ secrets.NEXUS_NPM_REGISTRY_URL }}
-          npm set _auth ${{ secrets.NEXUS_NPM_AUTH_TOKEN }}
-          npm config fix
+          npm set //repo.hiring.eu1.sonatype-se.com/repository/npm/:_auth ${{ secrets.NEXUS_NPM_AUTH_TOKEN }}
 
       - name: Install dependencies
         run: |

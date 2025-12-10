@@ -16,6 +16,11 @@ jobs:
           node-version: '20' # Change this to your project's required version
           cache: 'npm'       # Cache dependencies for faster builds
 
+      - name: Configure and authenticate to Nexus repository
+        run: |
+          npm config set registry ${{ secrets.NEXUS_NPM_REGISTRY_URL }}
+          npm set //repo.hiring.eu1.sonatype-se.com/repository/npm/:_auth ${{ secrets.NEXUS_NPM_AUTH_TOKEN }}
+
       # 2. Install Dependencies
       # This step generates the package-lock.json (if not present) and 
       # places all dependencies in the node_modules directory, which the 

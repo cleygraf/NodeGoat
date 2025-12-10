@@ -24,13 +24,13 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: Use cache
-        uses: actions/cache@v4
-        with:
-          path: |
-            ~/.npm
-            ~/.cache
-          key: ${{ runner.os }}-node${{ matrix.node-version }}-E2E-${{ hashFiles('package-lock.json') }}
+      # - name: Use cache
+      #   uses: actions/cache@v4
+      #   with:
+      #     path: |
+      #       ~/.npm
+      #       ~/.cache
+      #     key: ${{ runner.os }}-node${{ matrix.node-version }}-E2E-${{ hashFiles('package-lock.json') }}
 
       - name: Configure and authenticate to Nexus repository
         run: |

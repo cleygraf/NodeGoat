@@ -36,9 +36,9 @@ jobs:
         run: |
           npm config set registry ${{ secrets.NEXUS_NPM_REGISTRY_URL }}
           npm config set //${{ secrets.NEXUS_NPM_REGISTRY_URL }}/:_authToken ${{ secrets.NEXUS_NPM_AUTH_TOKEN }}
-          npm config list
+          npm config ls
           npm config fix
-          npm config list
+          npm config ls
 
       - name: Install dependencies
         run: |

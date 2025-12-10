@@ -32,6 +32,11 @@ jobs:
             ~/.cache
           key: ${{ runner.os }}-node${{ matrix.node-version }}-E2E-${{ hashFiles('package-lock.json') }}
 
+      - name: Configure and authenticate to Nexus repository
+        run: |
+          npm config set registry ${{ secrets.NEXUS_NPM_REGISTRY_URL }}
+          npm config set //${{ secrets.NEXUS_NPM_REGISTRY_URL#*// }}:_authToken ${{ secrets.NEXUS_NPM_AUTH_TOKEN }}
+          
       - name: Install dependencies
         run: |
           npm ci
